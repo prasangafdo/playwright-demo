@@ -1,0 +1,23 @@
+{
+  "name": "playwright-demo",
+  "version": "1.0.0",
+  "description": "Playwright demo based on Lambda Test tutorials. Cloned the repo",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prasangafdo/playwright-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/prasangafdo/playwright-demo/issues"
+  },
+  "homepage": "https://github.com/prasangafdo/playwright-demo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^24.0.7"
+  }
+}
