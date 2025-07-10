@@ -1,8 +1,6 @@
 import { PlaywrightTestConfig, defineConfig, devices } from '@playwright/test';
 
-const config: PlaywrightTestConfig = {
-  testMatch:["./tests/new.test.ts"]
-}
+//To run a specific test, follow this format. "npx playwright test /tests/recorded.test.ts"
 
 /**
  * Read environment variables from file.
@@ -16,7 +14,7 @@ const config: PlaywrightTestConfig = {
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: './tests/recorded.test.ts',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
