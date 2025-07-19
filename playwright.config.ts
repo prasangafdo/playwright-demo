@@ -1,4 +1,6 @@
-import { defineConfig, devices } from '@playwright/test';
+import { PlaywrightTestConfig, defineConfig, devices } from '@playwright/test';
+
+//To run a specific test, follow this format. "npx playwright test /tests/recorded.test.ts"
 
 /**
  * Read environment variables from file.
@@ -18,31 +20,38 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 5 : 2,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter:[
+    ["dot"],["json", {
+    outputFile: "reports/jsonReport/report.json"
+    }], ["html", {
+      open: "never"  //HTML report is always in playwright-report folder. Cannot change the path now.
+    }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    headless: false,
     trace: 'on-first-retry',
+    screenshot: 'on',
+    video: "retain-on-failure" //will take a video only if it is failed.
   },
-
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+    // {
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
     {
       name: 'webkit',
