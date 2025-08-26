@@ -1,4 +1,4 @@
-import test, { chromium } from "@playwright/test"
+import test, { chromium, expect } from "@playwright/test"
 import { assert } from "console"
 
 
@@ -29,4 +29,14 @@ test("Login test demo",async()=>{
 //TODO: type and fill 
 
 
-})
+});
+test("Test sample form demo", async ({ page }) => {
+    await page.goto("https://www.lambdatest.com/selenium-playground/simple-form-demo");
+    const message = "Test user message";
+    await page.fill("//input[@id='user-message']", message);
+    await page.click("#showInput");
+    let messageDisplay = page.locator("//p[@id='message']");
+    console.log(await messageDisplay.textContent());
+    expect(await messageDisplay.textContent()).toBe(message);
+});
+    
