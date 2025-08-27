@@ -39,4 +39,16 @@ test("Test sample form demo", async ({ page }) => {
     console.log(await messageDisplay.textContent());
     expect(await messageDisplay.textContent()).toBe(message);
 });
+
+test("Test sample form demo of adding two numbers", async ({ page }) => {
+    await page.goto("https://www.lambdatest.com/selenium-playground/simple-form-demo");
+    const num1 = 7;
+    const num2 = 6;
+    await page.fill("#sum1", num1.toString());
+    await page.fill("#sum2", num2.toString());
+    await page.click("//button[text()='Get Sum']");
+    let messageDisplay = page.locator("//p[@id='addmessage']");
+    console.log(await messageDisplay.textContent());
+    expect(await messageDisplay.textContent()).toBe(num1 + num2 + ""); //Converting to string
+});
     
