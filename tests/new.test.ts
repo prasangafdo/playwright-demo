@@ -48,7 +48,16 @@ test("Test sample form demo of adding two numbers", async ({ page }) => {
     await page.fill("#sum2", num2.toString());
     await page.click("//button[text()='Get Sum']");
     let messageDisplay = page.locator("//p[@id='addmessage']");
-    console.log(await messageDisplay.textContent());
-    expect(await messageDisplay.textContent()).toBe(num1 + num2 + ""); //Converting to string
+    console.log(await messageDisplay.textContent()); //Same as getText in Selenium
+    expect(await messageDisplay.textContent()).toBe(num1 + num2 + ""); //Converting to string 
+});
+
+test.only("Test the interaction with checkbox",async({page})=>{
+    await page.goto("https://practice.expandtesting.com/checkboxes");
+    const chkAgree = page.locator("#checkbox1")
+    // await chkAgree.scrollIntoViewIfNeeded()
+    await expect(chkAgree).not.toBeChecked()
+    await chkAgree.check() //Clicking the checkbox. We can also use click.
+    await expect(chkAgree).toBeChecked()
 });
     
