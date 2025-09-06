@@ -1,4 +1,4 @@
-import test, { chromium } from "@playwright/test"
+import test, { chromium, expect } from "@playwright/test"
 import { assert } from "console"
 
 
@@ -29,4 +29,35 @@ test("Login test demo",async()=>{
 //TODO: type and fill 
 
 
-})
+});
+test("Test sample form demo", async ({ page }) => {
+    await page.goto("https://www.lambdatest.com/selenium-playground/simple-form-demo");
+    const message = "Test user message";
+    await page.fill("//input[@id='user-message']", message);
+    await page.click("#showInput");
+    let messageDisplay = page.locator("//p[@id='message']");
+    console.log(await messageDisplay.textContent());
+    expect(await messageDisplay.textContent()).toBe(message);
+});
+
+test("Test sample form demo of adding two numbers", async ({ page }) => {
+    await page.goto("https://www.lambdatest.com/selenium-playground/simple-form-demo");
+    const num1 = 7;
+    const num2 = 6;
+    await page.fill("#sum1", num1.toString());
+    await page.fill("#sum2", num2.toString());
+    await page.click("//button[text()='Get Sum']");
+    let messageDisplay = page.locator("//p[@id='addmessage']");
+    console.log(await messageDisplay.textContent()); //Same as getText in Selenium
+    expect(await messageDisplay.textContent()).toBe(num1 + num2 + ""); //Converting to string 
+});
+
+test.only("Test the interaction with checkbox",async({page})=>{
+    await page.goto("https://practice.expandtesting.com/checkboxes");
+    const chkAgree = page.locator("#checkbox1")
+    // await chkAgree.scrollIntoViewIfNeeded()
+    await expect(chkAgree).not.toBeChecked()
+    await chkAgree.check() //Clicking the checkbox. We can also use click.
+    await expect(chkAgree).toBeChecked()
+});
+    
