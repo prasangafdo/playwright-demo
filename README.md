@@ -18,3 +18,4 @@ But to run with "npm test" command, we need to ad the following code block to pa
 
 Notes: Type and fill are two commonly used functions to enter a value to a text field. Type sends characters one by one and fill directly passes all the values at once. Additionally, fill removes the existing data and enter the new data at once.
 When we have multiple elements on the same name, we can use ".nth(0)"
+We should include alert listner and alert related function before we trigger the alert.
