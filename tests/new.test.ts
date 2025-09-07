@@ -52,7 +52,7 @@ test("Test sample form demo of adding two numbers", async ({ page }) => {
     expect(await messageDisplay.textContent()).toBe(num1 + num2 + ""); //Converting to string 
 });
 
-test.only("Test the interaction with checkbox",async({page})=>{
+test("Test the interaction with checkbox",async({page})=>{
     await page.goto("https://practice.expandtesting.com/checkboxes");
     const chkAgree = page.locator("#checkbox1")
     // await chkAgree.scrollIntoViewIfNeeded()
@@ -60,4 +60,9 @@ test.only("Test the interaction with checkbox",async({page})=>{
     await chkAgree.check() //Clicking the checkbox. We can also use click.
     await expect(chkAgree).toBeChecked()
 });
+
+test.only("Verify the button has-text",async({page})=>{
+    page.goto("https://ecommerce-playground.lambdatest.io/index.php?route=account/register")
+    const btnContinue = await page.locator("submit:has-value('Continue')").nth(0).click() // When we have multiple elements on the same name, we can use ".nth(0)"
+})
     
