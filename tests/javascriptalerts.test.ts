@@ -13,7 +13,7 @@ test("Verify Javascript alert message", async({page})=>{
     expect(txtAlert).toBe("I am an alert box!")
 })
 
-test("Verify the button click", async({page})=>{
+test("Verify the alert", async({page})=>{
     await page.goto("https://www.lambdatest.com/selenium-playground/javascript-alert-box-demo")
     
     let txtAlert:any
@@ -43,4 +43,30 @@ test("Verify the button click", async({page})=>{
     expectedResult = 'You pressed Cancel!'
     actualResult = await page.locator("//p[@id='confirm-demo']").textContent()
     expect(actualResult).toBe(expectedResult)
+})
+
+test.only("Verify the alert text input", async({page})=>{
+    await page.goto("https://www.lambdatest.com/selenium-playground/javascript-alert-box-demo")
+    
+    let txtAlert:any
+    let dialogAction : 'accept'|'dismiss' ='accept'
+
+    const txtInput = "Tharukshi"
+
+    page.on("dialog",async(alert)=>{
+        txtAlert = alert.message()
+        console.log(txtAlert)
+        await alert.accept(txtInput)
+    })
+    await page.waitForTimeout(1500)
+    await page.getByRole('button', { name: 'Click Me' }).nth(2).click()
+    expect(txtAlert).toBe("Please enter your name")
+
+    
+    let expectedResult = 'You have entered \''+txtInput+'\' !'
+    let actualResult = await page.locator("//p[@id='prompt-demo']").textContent()
+    console.log(actualResult)
+    console.log(expectedResult)
+    expect(actualResult).toContain(expectedResult)
+
 })
