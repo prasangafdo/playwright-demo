@@ -51,7 +51,7 @@ test.only("Verify the alert text input", async({page})=>{
     let txtAlert:any
     let dialogAction : 'accept'|'dismiss' ='accept'
 
-    const txtInput = "Tharukshi"
+    const txtInput = "test"
 
     page.on("dialog",async(alert)=>{
         txtAlert = alert.message()
