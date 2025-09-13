@@ -11,7 +11,7 @@ test("Verify bootstrap alert",async({page})=>{
     await btnCloseModal.click()
 })
 
-test.only("Verify additional bootstrap alert",async({page})=>{
+test("Verify additional bootstrap alert",async({page})=>{
     
     const btnLunchModal = page.locator("//button[@data-target='#myMultiModal']")
     const btnLunchSecondModal = page.locator("//button[@data-target='#mySecondModal']")
