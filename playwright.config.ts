@@ -39,7 +39,10 @@ export default defineConfig({
     headless: false,
     trace: 'on-first-retry',
     screenshot: 'on',
-    video: "retain-on-failure" //will take a video only if it is failed.
+    video: "retain-on-failure", //will take a video only if it is failed.
+    launchOptions:{
+      slowMo: 1000
+    }
   },
   /* Configure projects for major browsers */
   projects: [
