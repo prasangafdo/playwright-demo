@@ -20,3 +20,8 @@ Notes: Type and fill are two commonly used functions to enter a value to a text 
 When we have multiple elements on the same name, we can use ".nth(0)"
 We should include alert listner and alert related function before we trigger the alert.
 String format using TS -> `You pressed ${txtAlert}!`
+
+We can select inner elements this way.
+await page.locator("ul#select2-country-results").locator("li",{
+            hasText: "India"
+        }).click()
