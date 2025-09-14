@@ -61,7 +61,7 @@ test("Test the interaction with checkbox",async({page})=>{
     await expect(chkAgree).toBeChecked()
 });
 
-test.only("Verify the button has-text",async({page})=>{
+test("Verify the button has-text",async({page})=>{
     page.goto("https://ecommerce-playground.lambdatest.io/index.php?route=account/register")
     const btnContinue = await page.locator("submit:has-value('Continue')").nth(0).click() // When we have multiple elements on the same name, we can use ".nth(0)"
 })

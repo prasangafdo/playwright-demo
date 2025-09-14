@@ -45,7 +45,7 @@ test("Verify the alert", async({page})=>{
     expect(actualResult).toBe(expectedResult)
 })
 
-test.only("Verify the alert text input", async({page})=>{
+test("Verify the alert text input", async({page})=>{
     await page.goto("https://www.lambdatest.com/selenium-playground/javascript-alert-box-demo")
     
     let txtAlert:any
